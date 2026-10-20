@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="id" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Setiyo Anggara - Portfolio & Resume</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        glass: {
+                            bg: 'rgba(255, 255, 255, 0.08)',
+                            border: 'rgba(255, 255, 255, 0.15)',
+                            card: 'rgba(255, 255, 255, 0.05)',
+                            hover: 'rgba(255, 255, 255, 0.12)',
+                        },
+                        glasslight: {
+                            bg: 'rgba(255, 255, 255, 0.65)',
+                            border: 'rgba(255, 255, 255, 0.4)',
+                            card: 'rgba(255, 255, 255, 0.45)',
+                            hover: 'rgba(255, 255, 255, 0.75)',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 35%, #311042 70%, #0f172a 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
+        }
+
+        body.light-mode {
+            background: linear-gradient(135deg, #e0e7ff 0%, #f3e8ff 40%, #e0f2fe 70%, #ede9fe 100%);
+            background-attachment: fixed;
+            color: #1e293b;
+        }
+
+        /* Glassmorphism Styles */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.25);
+        }
+
+        .light-mode .glass-panel {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .light-mode .glass-card {
+            background: rgba(255, 255, 255, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+        }
+
+        .glass-card:hover {
+            background: rgba(255, 255, 255, 0.09);
+            border-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .light-mode .glass-card:hover {
+            background: rgba(255, 255, 255, 0.8);
+            border-color: rgba(255, 255, 255, 0.8);
+        }
+
+        .glass-nav {
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .light-mode .glass-nav {
+            background: rgba(255, 255, 255, 0.75);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.1);
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="text-slate-100 antialiased transition-colors duration-300">
+
+    <!-- NAVBAR (LinkedIn Top Bar) -->
+    <header class="glass-nav fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                
+                <!-- Logo & Search -->
+                <div class="flex items-center space-x-3 w-full md:w-auto">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-500 to-purple-500 flex items-center justify-center font-bold text-xl text-white shadow-lg shadow-indigo-500/30">
+                        SA
+                    </div>
+                    <div class="relative flex-1 md:w-64">
+                        <i data-lucide="search" class="absolute left-3 top-2.5 h-4 w-4 text-slate-400"></i>
+                        <input type="text" placeholder="Cari keahlian, pengalaman..." class="w-full pl-9 pr-4 py-1.5 text-sm rounded-full bg-white/10 dark:bg-slate-800/50 border border-white/10 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all placeholder-slate-400 dark:text-slate-200 text-slate-800">
+                    </div>
+                </div>
+
+                <!-- Navigation Links (Desktop) -->
+                <nav class="hidden md:flex items-center space-x-1 lg:space-x-6">
+                    <a href="#about" class="flex flex-col items-center py-1 px-3 text-indigo-400 hover:text-indigo-300 transition text-xs font-medium border-b-2 border-indigo-500">
+                        <i data-lucide="user" class="w-5 h-5 mb-0.5"></i>
+                        <span>Profil</span>
+                    </a>
+                    <a href="#experience" class="flex flex-col items-center py-1 px-3 text-slate-300 hover:text-indigo-400 dark:text-slate-300 dark:hover:text-white transition text-xs font-medium">
+                        <i data-lucide="briefcase" class="w-5 h-5 mb-0.5"></i>
+                        <span>Pengalaman</span>
+                    </a>
+                    <a href="#projects" class="flex flex-col items-center py-1 px-3 text-slate-300 hover:text-indigo-400 dark:text-slate-300 dark:hover:text-white transition text-xs font-medium">
+                        <i data-lucide="folder-git-2" class="w-5 h-5 mb-0.5"></i>
+                        <span>Organisasi/Proyek</span>
+                    </a>
+                    <a href="#education" class="flex flex-col items-center py-1 px-3 text-slate-300 hover:text-indigo-400 dark:text-slate-300 dark:hover:text-white transition text-xs font-medium">
+                        <i data-lucide="graduation-cap" class="w-5 h-5 mb-0.5"></i>
+                        <span>Pendidikan</span>
+                    </a>
+                    <a href="#skills" class="flex flex-col items-center py-1 px-3 text-slate-300 hover:text-indigo-400 dark:text-slate-300 dark:hover:text-white transition text-xs font-medium">
+                        <i data-lucide="award" class="w-5 h-5 mb-0.5"></i>
+                        <span>Skill & Prestasi</span>
+                    </a>
+                </nav>
+
+                <!-- Actions Right -->
+                <div class="flex items-center space-x-3">
+                    <button id="themeToggle" class="p-2 rounded-xl glass-panel hover:bg-white/20 text-slate-300 dark:text-slate-200 transition">
+                        <i data-lucide="sun" id="sunIcon" class="w-5 h-5 hidden"></i>
+                        <i data-lucide="moon" id="moonIcon" class="w-5 h-5"></i>
+                    </button>
+                    <a href="mailto:tiyoanggara7@gmail.com" class="hidden sm:inline-flex items-center space-x-2 px-4 py-2 text-sm font-medium rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white shadow-lg shadow-indigo-500/25 transition">
+                        <i data-lucide="mail" class="w-4 h-4"></i>
+                        <span>Hubungi Saya</span>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTAINER -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-16">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+
+            <!-- ================= LEFT COLUMN (Sidebar Profile summary) ================= -->
+            <div class="lg:col-span-4 xl:col-span-3 space-y-6">
+                
+                <!-- Main Mini Profile Card -->
+                <div class="glass-panel rounded-2xl overflow-hidden relative">
+                    <!-- Banner Cover -->
+                    <div class="h-28 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-500 relative">
+                        <div class="absolute inset-0 bg-black/10"></div>
+                    </div>
+                    
+                    <!-- Profile Info -->
+                    <div class="px-5 pb-5 pt-0 relative">
+                        <!-- Avatar -->
+                        <div class="-mt-12 mb-3 relative inline-block">
+                            <div class="w-24 h-24 rounded-2xl ring-4 ring-slate-900/50 overflow-hidden bg-slate-800 shadow-xl flex items-center justify-center text-3xl font-bold text-white bg-gradient-to-tr from-purple-600 to-indigo-500">
+                                <span>SA</span>
+                            </div>
+                            <span class="absolute bottom-1 right-1 w-4 h-4 bg-emerald-500 border-2 border-slate-900 rounded-full" title="Status: Aktif / Open to Work"></span>
+                        </div>
+
+                        <h1 class="text-xl font-bold text-slate-100 dark:text-slate-100 light-text font-sans">Setiyo Anggara</h1>
+                        <p class="text-xs font-semibold text-indigo-400 dark:text-indigo-300 mt-0.5">Riset Analisis Market & Inovasi</p>
+                        <p class="text-xs text-slate-400 mt-2 flex items-center gap-1">
+                            <i data-lucide="map-pin" class="w-3.5 h-3.5 shrink-0"></i>
+                            Rembang, Jawa Tengah
+                        </p>
+
+                        <!-- Open To Work Badge -->
+                        <div class="mt-4 p-2.5 rounded-xl bg-indigo-500/10 border border-indigo-500/20 text-xs text-indigo-300 flex items-start space-x-2">
+                            <i data-lucide="sparkles" class="w-4 h-4 text-indigo-400 shrink-0 mt-0.5"></i>
+                            <div>
+                                <span class="font-semibold block text-slate-200">Terbuka untuk Peluang</span>
+                                <span class="text-slate-400 text-[11px]">Riset Pasar, Content Specialist & Desain Grafis</span>
+                            </div>
+                        </div>
+
+                        <div class="mt-4 pt-4 border-t border-white/10 space-y-2 text-xs">
+                            <a href="tel:+62895604429353" class="flex items-center text-slate-300 hover:text-indigo-400 transition gap-2.5">
+                                <i data-lucide="phone" class="w-4 h-4 text-slate-400"></i>
+                                <span>+62 895 6044 29353</span>
+                            </a>
+                            <a href="mailto:tiyoanggara7@gmail.com" class="flex items-center text-slate-300 hover:text-indigo-400 transition gap-2.5 truncate">
+                                <i data-lucide="mail" class="w-4 h-4 text-slate-400"></i>
+                                <span class="truncate">tiyoanggara7@gmail.com</span>
+                            </a>
+                            <div class="flex items-center text-slate-300 gap-2.5">
+                                <i data-lucide="home" class="w-4 h-4 text-slate-400 shrink-0"></i>
+                                <span class="text-[11px] text-slate-400">Jl. TPI Pandangan Rembang - Jateng</span>
+                            </div>
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="mt-5 grid grid-cols-2 gap-2">
+                            <a href="mailto:tiyoanggara7@gmail.com" class="px-3 py-2 text-xs font-semibold rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-center transition flex items-center justify-center gap-1">
+                                <i data-lucide="send" class="w-3.5 h-3.5"></i>
+                                <span>Kirim Email</span>
+                            </a>
+                            <button onclick="shareProfile()" class="px-3 py-2 text-xs font-semibold rounded-xl glass-card text-slate-200 hover:bg-white/10 text-center transition flex items-center justify-center gap-1">
+                                <i data-lucide="share-2" class="w-3.5 h-3.5"></i>
+                                <span>Bagikan</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hard Skills Quick View -->
+                <div class="glass-panel rounded-2xl p-5">
+                    <h3 class="text-sm font-bold text-slate-200 mb-3 flex items-center gap-2">
+                        <i data-lucide="cpu" class="w-4 h-4 text-indigo-400"></i>
+                        <span>Keahlian Utama</span>
+                    </h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 text-xs rounded-lg glass-card text-indigo-300 font-medium">Desainer Grafis</span>
+                        <span class="px-3 py-1 text-xs rounded-lg glass-card text-purple-300 font-medium">Riset Market</span>
+                        <span class="px-3 py-1 text-xs rounded-lg glass-card text-pink-300 font-medium">Web Content Specialist</span>
+                    </div>
+                </div>
+
+                <!-- Soft Skills Quick View -->
+                <div class="glass-panel rounded-2xl p-5">
+                    <h3 class="text-sm font-bold text-slate-200 mb-3 flex items-center gap-2">
+                        <i data-lucide="users" class="w-4 h-4 text-indigo-400"></i>
+                        <span>Soft Skills</span>
+                    </h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-2.5 py-1 text-xs rounded-lg bg-white/5 border border-white/10 text-slate-300">Leadership</span>
+                        <span class="px-2.5 py-1 text-xs rounded-lg bg-white/5 border border-white/10 text-slate-300">Teamwork</span>
+                        <span class="px-2.5 py-1 text-xs rounded-lg bg-white/5 border border-white/10 text-slate-300">Adaptasi</span>
+                        <span class="px-2.5 py-1 text-xs rounded-lg bg-white/5 border border-white/10 text-slate-300">Berpikir Kritis</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- ================= CENTER COLUMN (Main LinkedIn Timeline / Feed) ================= -->
+            <div class="lg:col-span-8 xl:col-span-6 space-y-6">
+
+                <!-- ABOUT / PROFIL -->
+                <section id="about" class="glass-panel rounded-2xl p-6 relative">
+                    <div class="flex items-center justify-between mb-4">
+                        <h2 class="text-lg font-bold text-slate-100 flex items-center gap-2">
+                            <i data-lucide="user-check" class="w-5 h-5 text-indigo-400"></i>
+                            <span>Tentang Saya</span>
+                        </h2>
+                    </div>
+                    <p class="text-sm text-slate-300 leading-relaxed">
+                        Individu yang memiliki ketertarikan tinggi pada sosial budaya dan analisis perilaku masyarakat. Berpengalaman dalam berinteraksi langsung dengan masyarakat lokal serta terbiasa melakukan kajian literatur untuk memahami pola kehidupan dan kebutuhan audiens secara konseptual maupun praktis.
+                    </p>
+                </section>
+
+                <!-- WORK EXPERIENCE SECTION -->
+                <section id="experience" class="glass-panel rounded-2xl p-6">
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 class="text-lg font-bold text-slate-100 flex items-center gap-2">
+                            <i data-lucide="briefcase" class="w-5 h-5 text-indigo-400"></i>
+                            <span>Pengalaman Kerja</span>
+                        </h2>
+                        <span class="text-xs text-slate-400">3 Posisi</span>
+                    </div>
+
+                    <div class="space-y-6 relative before:absolute before:inset-0 before:left-3.5 before:w-0.5 before:bg-white/10">
+                        
+                        <!-- Exp 1 -->
+                        <div class="relative pl-8 group">
+                            <div class="absolute left-1.5 top-1.5 w-4 h-4 rounded-full bg-indigo-500 ring-4 ring-indigo-900/50 group-hover:scale-125 transition"></div>
+                            <div class="glass-card p-4 rounded-xl">
+                                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+                                    <h3 class="font-semibold text-slate-100 text-base">Front Office</h3>
+                                    <span class="text-xs font-medium px-2.5 py-0.5 rounded-full bg-indigo-500/20 text-indigo-300 w-fit">Apr 2025 - Dec 2025</span>
+                                </div>
+                                <p class="text-xs font-medium text-purple-300 mt-1">UD Bismillah — Rembang</p>
+                                <p class="text-xs text-slate-400 mt-2 leading-relaxed">
+                                    Mengelola pelayanan garda depan, komunikasi dengan klien/pelanggan, serta memastikan operasional harian berjalan secara efisien dan responsif.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Exp 2 -->
+                        <div class="relative pl-8 group">
+                            <div class="absolute left-1.5 top-1.5 w-4 h-4 rounded-full bg-indigo-500 ring-4 ring-indigo-900/50 group-hover:scale-125 transition"></div>
+                            <div class="glass-card p-4 rounded-xl">
+                                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+                                    <h3 class="font-semibold text-slate-100 text-base">Web Content Specialist</h3>
+                                    <span class="text-xs font-medium px-2.5 py-0.5 rounded-full bg-purple-500/20 text-purple-300 w-fit">May 2024 - Sep 2024</span>
+                                </div>
+                                <p class="text-xs font-medium text-purple-300 mt-1">PT. Fintek Digital Nusantara — Pati</p>
+                                <p class="text-xs text-slate-400 mt-2 leading-relaxed">
+                                    Merencanakan, membuat, dan mengoptimalkan konten digital website. Menganalisis kebutuhan audiens target untuk menyajikan konten informasi finansial/teknologi yang menarik dan informatif.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Exp 3 -->
+                        <div class="relative pl-8 group">
+                            <div class="absolute left-1.5 top-1.5 w-4 h-4 rounded-full bg-indigo-500 ring-4 ring-indigo-900/50 group-hover:scale-125 transition"></div>
+                            <div class="glass-card p-4 rounded-xl">
+                                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+                                    <h3 class="font-semibold text-slate-100 text-base">Admin</h3>
+                                    <span class="text-xs font-medium px-2.5 py-0.5 rounded-full bg-slate-500/20 text-slate-300 w-fit">Apr 2023 - May 2024</span>
+                                </div>
+                                <p class="text-xs font-medium text-purple-300 mt-1">KUD Mina Mitra Manunggal — Rembang</p>
+                                <p class="text-xs text-slate-400 mt-2 leading-relaxed">
+                                    Mengurusi administrasi data organisasi/usaha, pencatatan arsip, serta koordinasi teknis antar unit kelembagaan.
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+
+                <!-- ORGANIZATIONAL EXPERIENCE & PROJECTS -->
+                <section id="projects" class="glass-panel rounded-2xl p-6">
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 class="text-lg font-bold text-slate-100 flex items-center gap-2">
+                            <i data-lucide="folder-git-2" class="w-5 h-5 text-indigo-400"></i>
+                            <span>Pengalaman Organisasi & Project</span>
+                        </h2>
+                    </div>
+
+                    <div class="grid grid-cols-1 gap-4">
+                        
+                        <!-- Project 1 -->
+                        <div class="glass-card p-4 rounded-xl border-l-4 border-l-indigo-500">
+                            <div class="flex justify-between items-start gap-2">
+                                <div>
+                                    <span class="text-[10px] uppercase font-bold tracking-wider text-indigo-400 bg-indigo-500/10 px-2 py-0.5 rounded">Proyek Utama</span>
+                                    <h3 class="font-bold text-slate-100 text-base mt-1">Aksara Exhibition — Rembang</h3>
+                                </div>
+                                <span class="text-xs text-slate-400 whitespace-nowrap">Agu 2026</span>
+                            </div>
+                            <p class="text-xs font-semibold text-indigo-300 mt-1">Peran: Ketua Pelaksana</p>
+                            <p class="text-xs text-slate-300 mt-2 leading-relaxed">
+                                Memimpin dan memanajemeni pameran karya tulis (jurnalistik, cerpen, puisi) serta merancang forum diskusi terbuka untuk pegiat literasi dan masyarakat umum.
+                            </p>
+                        </div>
+
+                        <!-- Project 2 -->
+                        <div class="glass-card p-4 rounded-xl border-l-4 border-l-purple-500">
+                            <div class="flex justify-between items-start gap-2">
+                                <div>
+                                    <span class="text-[10px] uppercase font-bold tracking-wider text-purple-400 bg-purple-500/10 px-2 py-0.5 rounded">Pengabdian Sosial</span>
+                                    <h3 class="font-bold text-slate-100 text-base mt-1">Forsa Mengabdi — Rembang</h3>
+                                </div>
+                                <span class="text-xs text-slate-400 whitespace-nowrap">Agu 2026</span>
+                            </div>
+                            <p class="text-xs font-semibold text-purple-300 mt-1">Peran: Panitia</p>
+                            <p class="text-xs text-slate-300 mt-2 leading-relaxed">
+                                Kegiatan kolaboratif bersama Sekolah Luar Biasa (SLB) melalui aktivitas interaktif guna memberdayakan dan mengedukasi anak-anak disabilitas.
+                            </p>
+                        </div>
+
+                        <!-- Org 1 -->
+                        <div class="glass-card p-4 rounded-xl border-l-4 border-l-emerald-500">
+                            <div class="flex justify-between items-start gap-2">
+                                <div>
+                                    <span class="text-[10px] uppercase font-bold tracking-wider text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded">Komunitas Literasi</span>
+                                    <h3 class="font-bold text-slate-100 text-base mt-1">TBM Lentera Kisik — Rembang</h3>
+                                </div>
+                                <span class="text-xs text-slate-400 whitespace-nowrap">Nov 2025 - Sekarang</span>
+                            </div>
+                            <p class="text-xs font-semibold text-emerald-300 mt-1">Peran: Anggota</p>
+                            <p class="text-xs text-slate-300 mt-2 leading-relaxed">
+                                Komunitas penggiat literasi dan budaya yang berfokus pada peningkatkan minat baca dan pengembangan wawasan sosial-budaya di lingkungan daerah.
+                            </p>
+                        </div>
+
+                        <!-- Org 2 -->
+                        <div class="glass-card p-4 rounded-xl border-l-4 border-l-amber-500">
+                            <div class="flex justify-between items-start gap-2">
+                                <div>
+                                    <span class="text-[10px] uppercase font-bold tracking-wider text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded">Organisasi Kepemudaan</span>
+                                    <h3 class="font-bold text-slate-100 text-base mt-1">Karang Taruna Mitra Manunggal — Rembang</h3>
+                                </div>
+                                <span class="text-xs text-slate-400 whitespace-nowrap">Jun 2025 - Sekarang</span>
+                            </div>
+                            <p class="text-xs font-semibold text-amber-300 mt-1">Peran: Anggota</p>
+                            <p class="text-xs text-slate-300 mt-2 leading-relaxed">
+                                Organisasi kepemudaan desa yang menggerakkan aksi sosial, pemberdayaan pemuda, serta event kebudayaan lokal.
+                            </p>
+                        </div>
+
+                    </div>
+                </section>
+
+                <!-- EDUCATION -->
+                <section id="education" class="glass-panel rounded-2xl p-6">
+                    <h2 class="text-lg font-bold text-slate-100 mb-6 flex items-center gap-2">
+                        <i data-lucide="graduation-cap" class="w-5 h-5 text-indigo-400"></i>
+                        <span>Pendidikan</span>
+                    </h2>
+
+                    <div class="glass-card p-5 rounded-xl flex items-start gap-4">
+                        <div class="p-3 rounded-xl bg-indigo-500/20 text-indigo-400 shrink-0">
+                            <i data-lucide="school" class="w-6 h-6"></i>
+                        </div>
+                        <div class="space-y-1 flex-1">
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between">
+                                <h3 class="font-bold text-slate-100 text-base">SMK Umar Fatah Rembang</h3>
+                                <span class="text-xs text-slate-400">Jul 2022 - Apr 2025</span>
+                            </div>
+                            <p class="text-xs font-semibold text-indigo-300">Desain Komunikasi Visual (DKV)</p>
+                            <div class="mt-3 inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-amber-500/15 border border-amber-500/30 text-amber-300 text-xs font-medium">
+                                <i data-lucide="award" class="w-4 h-4 text-amber-400"></i>
+                                <span>Lulusan Terbaik lintas jurusan dengan nilai rata-rata 94,73</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+
+            <!-- ================= RIGHT COLUMN (Widgets, Achievements, Contact) ================= -->
+            <div class="lg:col-span-12 xl:col-span-3 space-y-6">
+
+                <!-- PRESTASI / ACHIEVEMENTS WIDGET -->
+                <div id="skills" class="glass-panel rounded-2xl p-5">
+                    <h3 class="text-sm font-bold text-slate-100 mb-4 flex items-center gap-2">
+                        <i data-lucide="trophy" class="w-4 h-4 text-amber-400"></i>
+                        <span>Prestasi & Penghargaan</span>
+                    </h3>
+
+                    <div class="glass-card p-4 rounded-xl border border-amber-500/20 bg-amber-500/5">
+                        <div class="flex items-center gap-2 text-amber-400 font-bold text-xs uppercase tracking-wide">
+                            <i data-lucide="medal" class="w-4 h-4"></i>
+                            <span>Tahun 2026</span>
+                        </div>
+                        <h4 class="font-bold text-slate-100 text-sm mt-1">Runner-Up Duta Literasi Rembang</h4>
+                        <p class="text-xs text-slate-300 mt-2 leading-relaxed">
+                            Kompetisi pemilihan figur teladan dan garda depan dalam mengampanyekan minat baca, budaya menulis, serta pemanfaatan perpustakaan daerah.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- DOWNLOAD RESUME CARD -->
+                <div class="glass-panel rounded-2xl p-5 text-center relative overflow-hidden">
+                    <div class="absolute -right-6 -bottom-6 w-24 h-24 bg-indigo-500/20 rounded-full blur-xl"></div>
+                    <i data-lucide="file-text" class="w-10 h-10 mx-auto text-indigo-400 mb-2"></i>
+                    <h3 class="font-bold text-slate-100 text-sm">Butuh Resume Lengkap?</h3>
+                    <p class="text-xs text-slate-400 mt-1 mb-4">Unduh ringkasan kurikulum vitae Setiyo Anggara.</p>
+                    <button onclick="window.print()" class="w-full py-2.5 px-4 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 text-slate-200 font-medium text-xs transition flex items-center justify-center gap-2">
+                        <i data-lucide="download" class="w-4 h-4"></i>
+                        <span>Cetak / Simpan PDF</span>
+                    </button>
+                </div>
+
+                <!-- FOOTER / CREDIT -->
+                <div class="text-center text-xs text-slate-500 pt-2 space-y-1">
+                    <p>© 2026 Setiyo Anggara.</p>
+                    <p>Designed with Glassmorphism UI</p>
+                </div>
+
+            </div>
+
+        </div>
+    </main>
+
+    <!-- FLOATING MOBILE BOTTOM NAVIGATION -->
+    <div class="md:hidden fixed bottom-4 left-4 right-4 z-50 glass-nav rounded-2xl p-2 border border-white/20 shadow-2xl">
+        <div class="flex justify-around items-center">
+            <a href="#about" class="p-2 text-indigo-400 flex flex-col items-center">
+                <i data-lucide="user" class="w-5 h-5"></i>
+                <span class="text-[10px]">Profil</span>
+            </a>
+            <a href="#experience" class="p-2 text-slate-400 hover:text-indigo-400 flex flex-col items-center">
+                <i data-lucide="briefcase" class="w-5 h-5"></i>
+                <span class="text-[10px]">Pengalaman</span>
+            </a>
+            <a href="#projects" class="p-2 text-slate-400 hover:text-indigo-400 flex flex-col items-center">
+                <i data-lucide="folder-git-2" class="w-5 h-5"></i>
+                <span class="text-[10px]">Proyek</span>
+            </a>
+            <a href="#education" class="p-2 text-slate-400 hover:text-indigo-400 flex flex-col items-center">
+                <i data-lucide="graduation-cap" class="w-5 h-5"></i>
+                <span class="text-[10px]">Edukasi</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Dark/Light Mode Toggle Functionality
+        const themeToggleBtn = document.getElementById('themeToggle');
+        const sunIcon = document.getElementById('sunIcon');
+        const moonIcon = document.getElementById('moonIcon');
+
+        themeToggleBtn.addEventListener('click', () => {
+            document.body.classList.toggle('light-mode');
+            if (document.body.classList.contains('light-mode')) {
+                sunIcon.classList.remove('hidden');
+                moonIcon.classList.add('hidden');
+            } else {
+                sunIcon.classList.add('hidden');
+                moonIcon.classList.remove('hidden');
+            }
+        });
+
+        // Share Profile Functionality
+        function shareProfile() {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Setiyo Anggara - Portofolio',
+                    text: 'Lihat profil profesional & pengalaman Setiyo Anggara (Riset Analisis Market & Inovasi)',
+                    url: window.location.href,
+                }).catch(() => {});
+            } else {
+                // Fallback copy link
+                const dummy = document.createElement('input');
+                document.body.appendChild(dummy);
+                dummy.value = window.location.href;
+                dummy.select();
+                document.execCommand('copy');
+                document.body.removeChild(dummy);
+                
+                // Show floating notification
+                const toast = document.createElement('div');
+                toast.className = 'fixed bottom-20 left-1/2 -translate-x-1/2 bg-indigo-600 text-white px-4 py-2 rounded-xl text-xs shadow-xl z-50';
+                toast.innerText = 'Tautan profil berhasil disalin!';
+                document.body.appendChild(toast);
+                setTimeout(() => toast.remove(), 2500);
+            }
+        }
+    </script>
+</body>
+</html>
